@@ -9,7 +9,7 @@
 - Gulp `4.0.0-alpha.1`
 - Jasmine
 - Karma
-- Typescript
+- Typescript `~1.8.0-dev`
 - SASS
 - SystemJS
 

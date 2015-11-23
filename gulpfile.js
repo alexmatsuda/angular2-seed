@@ -12,9 +12,9 @@ var autoprefixer = require('autoprefixer'),
     typescript   = require('gulp-typescript');
 
 
-/*=========================================================
-  PATHS
----------------------------------------------------------*/
+//=========================================================
+//  PATHS
+//---------------------------------------------------------
 var paths = {
   lib: {
     src: [
@@ -43,9 +43,9 @@ var paths = {
 };
 
 
-/*=========================================================
-  CONFIG
----------------------------------------------------------*/
+//=========================================================
+//  CONFIG
+//---------------------------------------------------------
 var config = {
   autoprefixer: {
     browsers: ['last 3 versions', 'Firefox ESR']
@@ -89,9 +89,9 @@ var config = {
 };
 
 
-/*=========================================================
-  TASKS
----------------------------------------------------------*/
+//=========================================================
+//  TASKS
+//---------------------------------------------------------
 gulp.task('clean.target', function(){
   return del(paths.target);
 });
@@ -135,7 +135,13 @@ gulp.task('serve', function(done){
 });
 
 
-var tsProject = typescript.createProject(config.ts.configFile);
+//===========================
+// TYPESCRIPT
+//---------------------------
+var tsProject = typescript.createProject(config.ts.configFile, {
+  typescript: require('typescript')
+});
+
 
 gulp.task('ts', function(){
   //return gulp.src([paths.src.ts].concat(paths.typings.entries))
@@ -148,9 +154,9 @@ gulp.task('ts', function(){
 });
 
 
-/*===========================
-  BUILD
----------------------------*/
+//===========================
+// BUILD
+//---------------------------
 gulp.task('build', gulp.series(
   'clean.target',
   'copy.html',
@@ -160,9 +166,9 @@ gulp.task('build', gulp.series(
 ));
 
 
-/*===========================
-  DEVELOP
----------------------------*/
+//===========================
+// DEVELOP
+//---------------------------
 gulp.task('default', gulp.series(
   'build',
   'serve',
@@ -174,9 +180,9 @@ gulp.task('default', gulp.series(
 ));
 
 
-/*===========================
-  TEST
----------------------------*/
+//===========================
+// TEST
+//---------------------------
 function karmaServer(options, done) {
   var server = new karma.Server(options, function(error){
     if (error) process.exit(error);
